@@ -22,6 +22,7 @@ public class RESTClient {
     private HttpClient client;
 
     public List<Airports> getAllAirports() {
+
         List<Airports> airports = new ArrayList<Airports>();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();

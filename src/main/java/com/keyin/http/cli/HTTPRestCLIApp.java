@@ -118,6 +118,11 @@ public class HTTPRestCLIApp {
     }
 
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Please provide the server URL as a command-line argument.");
+            return;
+        }
+
         for (String arg : args) {
             System.out.println(arg);
         }

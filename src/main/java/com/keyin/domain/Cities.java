@@ -1,6 +1,7 @@
 package com.keyin.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Cities {
     private String id;
@@ -8,6 +9,14 @@ public class Cities {
     private String state;
     private int population;
     private ArrayList<Airports> airports;
+
+    public Cities() {
+
+    }
+
+    public Cities(String state) {
+        this.state = state;
+    }
 
     public Cities(String id, String name, String state, int population, ArrayList<Airports> airports) {
         this.id = id;
@@ -56,4 +65,18 @@ public class Cities {
     public void setAirports(ArrayList<Airports> airports) {
         this.airports = airports;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cities city = (Cities) o;
+        return Objects.equals(state, city.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state);
+    }
+
 }

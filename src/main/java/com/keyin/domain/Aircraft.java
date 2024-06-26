@@ -1,6 +1,7 @@
 package com.keyin.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Aircraft {
     private String id;
@@ -10,6 +11,9 @@ public class Aircraft {
     private ArrayList<Airports> airportsTakeOff;
     private ArrayList<Airports> airportsLand;
 
+    public Aircraft() {
+
+    }
 
     public Aircraft(String id, String type, String airlineName, int numberOfPassengers, ArrayList<Airports> airports) {
         this.id = id;
@@ -18,6 +22,10 @@ public class Aircraft {
         this.numberOfPassengers = numberOfPassengers;
         this.airportsTakeOff = airportsTakeOff;
         this.airportsLand = airportsLand;
+    }
+
+    public Aircraft(String type) {
+        this.type = type;
     }
 
     public String getId() {
@@ -66,5 +74,18 @@ public class Aircraft {
 
     public void setAirportsTakeOff(ArrayList<Airports> airportsTakeOff) {
         this.airportsTakeOff = airportsTakeOff;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aircraft aircraft = (Aircraft) o;
+        return Objects.equals(type, aircraft.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 }

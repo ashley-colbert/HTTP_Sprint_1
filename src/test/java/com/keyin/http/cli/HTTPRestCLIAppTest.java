@@ -55,6 +55,23 @@ public class HTTPRestCLIAppTest {
         List<Aircraft> aircraftList = new ArrayList<Aircraft>();
         aircraftList.add(aircraft1);
 
+        List<Airports> airportsTakeOffList = new ArrayList<>();
+        Airports airportTakeOff1 = new Airports();
+        airportTakeOff1.setId("1");
+        airportTakeOff1.setName("St. John's International Airport");
+        airportTakeOff1.setCode("YYT");
+        airportsTakeOffList.add(airportTakeOff1);
+
+        List<Airports> airportsLandList = new ArrayList<>();
+        Airports airportLand1 = new Airports();
+        airportLand1.setId("1");
+        airportLand1.setName("St. John's International Airport");
+        airportLand1.setCode("YYT");
+        airportsLandList.add(airportLand1);
+
+        aircraft1.setAirportsTakeOff((ArrayList<Airports>) airportsTakeOffList);
+        aircraft1.setAirportsLand((ArrayList<Airports>) airportsLandList);
+
         Mockito.when(mockRESTClient.getAllAircraft()).thenReturn(aircraftList);
 
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
@@ -64,7 +81,7 @@ public class HTTPRestCLIAppTest {
     }
 
     @Test
-    public void testGeneratePassengerReport() {
+    public void testGeneratePassengerAirportReport() {
         HTTPRestCLIApp httpRestCLIAppUnderTest = new HTTPRestCLIApp();
 
         Passengers passenger1 = new Passengers();
@@ -73,6 +90,15 @@ public class HTTPRestCLIAppTest {
         passenger1.setPhoneNumber("709-555-5555");
         passenger1.setId("js5555");
 
+        List<Airports> airportsList = new ArrayList<>();
+        Airports airport1 = new Airports();
+        airport1.setId("1");
+        airport1.setName("St. John's International Airport");
+        airport1.setCode("YYT");
+        airportsList.add(airport1);
+
+        passenger1.setAirports((ArrayList<Airports>) airportsList);
+
         List<Passengers> passengersList = new ArrayList<Passengers>();
         passengersList.add(passenger1);
 
@@ -80,7 +106,38 @@ public class HTTPRestCLIAppTest {
 
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
-        Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerReport().contains("Smith"));
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAirportReport().contains("Smith"));
+
+    }
+
+    @Test
+    public void testGeneratePassengerAircraftReport() {
+        HTTPRestCLIApp httpRestCLIAppUnderTest = new HTTPRestCLIApp();
+
+        Passengers passenger1 = new Passengers();
+        passenger1.setFirstName("Julie");
+        passenger1.setLastName("Smith");
+        passenger1.setPhoneNumber("709-555-5555");
+        passenger1.setId("js5555");
+
+        List<Aircraft> aircraftList = new ArrayList<>();
+        Aircraft aircraft1 = new Aircraft();
+        aircraft1.setId("WJ123");
+        aircraft1.setType("Boeing");
+        aircraft1.setAirlineName("West Jet");
+        aircraft1.setNumberOfPassengers(200);
+        aircraftList.add(aircraft1);
+
+        passenger1.setAircraft((ArrayList<Aircraft>) aircraftList);
+
+        List<Passengers> passengersList = new ArrayList<Passengers>();
+        passengersList.add(passenger1);
+
+        Mockito.when(mockRESTClient.getAllPassengers()).thenReturn(passengersList);
+
+        httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
+
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAircraftReport().contains("Smith"));
 
     }
 
@@ -93,6 +150,15 @@ public class HTTPRestCLIAppTest {
         city1.setState("NL");
         city1.setPopulation (200000);
         city1.setId("1");
+
+        List<Airports> airportsList = new ArrayList<>();
+        Airports airport1 = new Airports();
+        airport1.setId("1");
+        airport1.setName("St. John's International Airport");
+        airport1.setCode("YYT");
+        airportsList.add(airport1);
+
+        city1.setAirports((ArrayList<Airports>) airportsList);
 
         List<Cities> cityList = new ArrayList<Cities>();
         cityList.add(city1);

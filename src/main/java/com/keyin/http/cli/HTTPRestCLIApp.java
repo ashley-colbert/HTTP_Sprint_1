@@ -24,7 +24,7 @@ public class HTTPRestCLIApp {
             report.append(airport.getCode());
 
             if (airports.indexOf(airport) != (airports.size() - 1)) {
-                report.append(",");
+                report.append("\n");
             }
         }
 
@@ -46,9 +46,19 @@ public class HTTPRestCLIApp {
             report.append(aircraft.getAirlineName());
             report.append(" - ");
             report.append(aircraft.getNumberOfPassengers());
-
+            report.append("\n");
+            for (Airports airport: aircraft.getAirportsTakeOff()) {
+                report.append("   Take-off: ");
+                report.append(airport.toString());
+                report.append("\n");
+            }
+            for (Airports airport: aircraft.getAirportsLand()) {
+                report.append("   Land: ");
+                report.append(airport.toString());
+                report.append("\n");
+            }
             if (aircrafts.indexOf(aircraft) != (aircrafts.size() - 1)) {
-                report.append(",");
+                report.append("\n");
             }
         }
 
@@ -65,7 +75,7 @@ public class HTTPRestCLIApp {
         return restClient;
     }
 
-    public String generatePassengerReport() {
+    public String generatePassengerAirportReport() {
         List<Passengers> passengers = getRestClient().getAllPassengers();
 
         StringBuffer report = new StringBuffer();
@@ -78,9 +88,48 @@ public class HTTPRestCLIApp {
             report.append(passenger.getLastName());
             report.append(" - ");
             report.append(passenger.getPhoneNumber());
+            report.append("\n");
+
+            for (Airports airport: passenger.getAirports()) {
+                report.append(" ");
+                report.append(airport.toString());
+                report.append("\n");
+            }
 
             if (passengers.indexOf(passenger) != (passengers.size() - 1)) {
-                report.append(",");
+                report.append("\n");
+            }
+        }
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generatePassengerAircraftReport() {
+        List<Passengers> passengers = getRestClient().getAllPassengers();
+
+        StringBuffer report = new StringBuffer();
+
+        for (Passengers passenger : passengers) {
+            report.append(passenger.getId());
+            report.append(" - ");
+            report.append(passenger.getFirstName());
+            report.append(" - ");
+            report.append(passenger.getLastName());
+            report.append(" - ");
+            report.append(passenger.getPhoneNumber());
+            report.append("\n");
+
+
+            for (Aircraft aircraft: passenger.getAircraft()) {
+                report.append(" ");
+                report.append(aircraft.toString());
+                report.append("\n");
+            }
+
+            if (passengers.indexOf(passenger) != (passengers.size() - 1)) {
+                report.append("\n");
             }
         }
 
@@ -102,9 +151,16 @@ public class HTTPRestCLIApp {
             report.append(city.getState());
             report.append(" - ");
             report.append(city.getPopulation());
+            report.append("\n");
+
+            for (Airports airport: city.getAirports()) {
+                report.append(" ");
+                report.append(airport.toString());
+                report.append("\n");
+            }
 
             if (cities.indexOf(city) != (cities.size() - 1)) {
-                report.append(",");
+                report.append("\n");
             }
         }
 
@@ -118,10 +174,6 @@ public class HTTPRestCLIApp {
     }
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("Please provide the server URL as a command-line argument.");
-            return;
-        }
 
         for (String arg : args) {
             System.out.println(arg);
@@ -138,11 +190,12 @@ public class HTTPRestCLIApp {
 
             cliApp.setRestClient(restClient);
 
-            cliApp.generateAirportReport();
-            cliApp.generateAircraftReport();
-            cliApp.generatePassengerReport();
-            cliApp.generateCitiesReport();
+//            cliApp.generateAirportReport();
+//            cliApp.generateAircraftReport();
+            cliApp.generatePassengerAircraftReport();
+            cliApp.generatePassengerAirportReport();
 
+//            cliApp.generateCitiesReport();
         }
 
     }

@@ -79,4 +79,12 @@ public class Cities {
         return Objects.hash(state);
     }
 
+    @Override
+    public String toString() {
+        return
+                "City ID:'" + id + '\'' +
+                ", Name:'" + name + '\'' +
+                ", Province/State:'" + state + '\'' +
+                ", Population:'" + population + '\'';
+    }
 }

@@ -88,4 +88,13 @@ public class Aircraft {
     public int hashCode() {
         return Objects.hash(type);
     }
+
+    @Override
+    public String toString() {
+        return "Aircraft ID='" + id + '\'' +
+                ", Type:'" + type + '\'' +
+                ", Airline Name:'" + airlineName + '\'' +
+                ", Number of Passengers:'" + numberOfPassengers + '\'';
+    }
+
 }

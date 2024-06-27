@@ -57,5 +57,10 @@ public class Airports {
         return Objects.hash(code);
     }
 
-
+    @Override
+    public String toString() {
+        return  "Airport ID:'" + id + '\'' +
+                ", Name:'" + name + '\'' +
+                ", Code:'" + code + '\'';
+    }
 }

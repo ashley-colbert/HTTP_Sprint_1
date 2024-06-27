@@ -87,4 +87,13 @@ public class Passengers {
     public int hashCode() {
         return Objects.hash(lastName);
     }
+
+    @Override
+    public String toString() {
+        return
+                "Passenger ID='" + id + '\'' +
+                ", First Name:'" + firstName + '\'' +
+                ", Last Name:'" + lastName + '\'' +
+                ", Phone Number:'" + phoneNumber + '\'';
+    }
 }

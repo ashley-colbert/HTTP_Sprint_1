@@ -21,6 +21,24 @@ public class RESTClient {
     private String serverURL;
     private HttpClient client;
 
+    public String getResponseFromHttpRequest() {
+        String responseBody = "";
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+            responseBody = response.body();
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return responseBody;
+    }
+
     public List<Airports> getAllAirports() {
 
         List<Airports> airports = new ArrayList<Airports>();

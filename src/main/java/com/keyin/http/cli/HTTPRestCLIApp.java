@@ -5,9 +5,7 @@ import com.keyin.domain.Airports;
 import com.keyin.domain.Cities;
 import com.keyin.domain.Passengers;
 import com.keyin.http.client.RESTClient;
-
 import java.util.List;
-import java.util.Scanner;
 
 public class HTTPRestCLIApp {
     private RESTClient restClient;

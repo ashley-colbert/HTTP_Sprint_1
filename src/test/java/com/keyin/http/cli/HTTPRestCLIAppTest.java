@@ -78,6 +78,7 @@ public class HTTPRestCLIAppTest {
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generateAircraftAirportsReport().contains("Boeing"));
         Assertions.assertNotNull(httpRestCLIAppUnderTest.generateAircraftAirportsReport());
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generateAircraftAirportsReport().contains("YYT"));
     }
 
     @Test
@@ -108,6 +109,9 @@ public class HTTPRestCLIAppTest {
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAirportReport().contains("Smith"));
         Assertions.assertNotNull(httpRestCLIAppUnderTest.generatePassengerAirportReport());
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAirportReport().contains("YYT"));
+
+
     }
 
     @Test
@@ -139,6 +143,7 @@ public class HTTPRestCLIAppTest {
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAircraftReport().contains("Smith"));
         Assertions.assertNotNull(httpRestCLIAppUnderTest.generatePassengerAircraftReport());
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAircraftReport().contains("Boeing"));
     }
 
     @Test
@@ -169,5 +174,8 @@ public class HTTPRestCLIAppTest {
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generateCitiesAirportsReport().contains("NL"));
         Assertions.assertNotNull(httpRestCLIAppUnderTest.generateCitiesAirportsReport());
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generateCitiesAirportsReport().contains("YYT"));
+
+
     }
 }

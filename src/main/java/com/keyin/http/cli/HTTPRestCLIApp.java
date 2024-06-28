@@ -7,6 +7,7 @@ import com.keyin.domain.Passengers;
 import com.keyin.http.client.RESTClient;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class HTTPRestCLIApp {
     private RESTClient restClient;
@@ -33,7 +34,7 @@ public class HTTPRestCLIApp {
         return report.toString();
     }
 
-    public String generateAircraftReport() {
+    public String generateAircraftAirportsReport() {
         List<Aircraft> aircrafts = getRestClient().getAllAircraft();
 
         StringBuffer report = new StringBuffer();
@@ -138,7 +139,7 @@ public class HTTPRestCLIApp {
         return report.toString();
     }
 
-    public String generateCitiesReport() {
+    public String generateCitiesAirportsReport() {
         List<Cities> cities = getRestClient().getAllCities();
 
         StringBuffer report = new StringBuffer();
@@ -174,7 +175,6 @@ public class HTTPRestCLIApp {
     }
 
     public static void main(String[] args) {
-
         for (String arg : args) {
             System.out.println(arg);
         }
@@ -190,12 +190,20 @@ public class HTTPRestCLIApp {
 
             cliApp.setRestClient(restClient);
 
-//            cliApp.generateAirportReport();
-//            cliApp.generateAircraftReport();
-            cliApp.generatePassengerAircraftReport();
-            cliApp.generatePassengerAirportReport();
+//            //Change url to 'http://localhost:8080/aircraft'
+//            System.out.println("Aircraft/airport report:");
+//            cliApp.generateAircraftAirportsReport();
 
-//            cliApp.generateCitiesReport();
+//            //Change url to 'http://localhost:8080/passenger'
+//            System.out.println("Passenger/aircraft report:");
+//            cliApp.generatePassengerAircraftReport();
+
+//            System.out.println("Passenger/airport report:");
+//            cliApp.generatePassengerAirportReport();
+//
+            //Change url to 'http://localhost:8080/cities'
+            System.out.println("Cities/airport report:");
+            cliApp.generateCitiesAirportsReport();
         }
 
     }

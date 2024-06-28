@@ -39,11 +39,11 @@ public class HTTPRestCLIAppTest {
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generateAirportReport().contains("YYT"));
-
+        Assertions.assertNotNull(httpRestCLIAppUnderTest.generateAirportReport());
     }
 
     @Test
-    public void testGenerateAircraftReport() {
+    public void testGenerateAircraftAirportsReport() {
         HTTPRestCLIApp httpRestCLIAppUnderTest = new HTTPRestCLIApp();
 
         Aircraft aircraft1 = new Aircraft();
@@ -76,8 +76,8 @@ public class HTTPRestCLIAppTest {
 
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
-        Assertions.assertTrue(httpRestCLIAppUnderTest.generateAircraftReport().contains("Boeing"));
-
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generateAircraftAirportsReport().contains("Boeing"));
+        Assertions.assertNotNull(httpRestCLIAppUnderTest.generateAircraftAirportsReport());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class HTTPRestCLIAppTest {
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAirportReport().contains("Smith"));
-
+        Assertions.assertNotNull(httpRestCLIAppUnderTest.generatePassengerAirportReport());
     }
 
     @Test
@@ -138,11 +138,11 @@ public class HTTPRestCLIAppTest {
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIAppUnderTest.generatePassengerAircraftReport().contains("Smith"));
-
+        Assertions.assertNotNull(httpRestCLIAppUnderTest.generatePassengerAircraftReport());
     }
 
     @Test
-    public void testGenerateCityReport() {
+    public void testGenerateCityAirportReport() {
         HTTPRestCLIApp httpRestCLIAppUnderTest = new HTTPRestCLIApp();
 
         Cities city1 = new Cities();
@@ -167,7 +167,7 @@ public class HTTPRestCLIAppTest {
 
         httpRestCLIAppUnderTest.setRestClient(mockRESTClient);
 
-        Assertions.assertTrue(httpRestCLIAppUnderTest.generateCitiesReport().contains("NL"));
-
+        Assertions.assertTrue(httpRestCLIAppUnderTest.generateCitiesAirportsReport().contains("NL"));
+        Assertions.assertNotNull(httpRestCLIAppUnderTest.generateCitiesAirportsReport());
     }
 }

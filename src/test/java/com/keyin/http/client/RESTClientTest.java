@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class RESTClientTest {
+
     @Test
     public void testBuildAirportListFromResponse() throws Exception {
         String jsonResponse = "[\n{\n\"id\": 1,\n\"name\": \"St. John's\",\n\"code\": \"YYT\"\n},\n" +
@@ -20,6 +21,7 @@ public class RESTClientTest {
         List<Airports> airportList = restClientUnderTest.buildAirportListFromResponse(jsonResponse);
 
         Assertions.assertTrue(airportList.contains(new Airports("YYT")));
+        Assertions.assertNotNull(airportList);
     }
 
     @Test
@@ -31,6 +33,7 @@ public class RESTClientTest {
         List<Aircraft> aircraftList = restClientUnderTest.buildAircraftListFromResponse(jsonResponse);
 
         Assertions.assertTrue(aircraftList.contains(new Aircraft("Boeing")));
+        Assertions.assertNotNull(aircraftList);
     }
 
     @Test
@@ -42,6 +45,7 @@ public class RESTClientTest {
         List<Passengers> passengerList = restClientUnderTest.buildPassengerListFromResponse(jsonResponse);
 
         Assertions.assertTrue(passengerList.contains(new Passengers("Smith")));
+        Assertions.assertNotNull(passengerList);
     }
 
     @Test
@@ -53,5 +57,6 @@ public class RESTClientTest {
         List<Cities> cityList = restClientUnderTest.buildCitiesListFromResponse(jsonResponse);
 
         Assertions.assertTrue(cityList.contains(new Cities("NL")));
+        Assertions.assertNotNull(cityList);
     }
 }
